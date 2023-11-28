@@ -17,7 +17,7 @@ def main():
         diff = 0
         tabs = 0
         current = start  # Retains original start
-        #print(f'Starting at:\n{int("".join(start))}')
+        # print(f'Starting at:\n{int("".join(start))}')
         while diff != 6174:
             high = [i for i in reversed(sorted(current))]
             low = sorted(current)
@@ -25,18 +25,24 @@ def main():
             low_int = int("".join(low))
 
             diff = high_int-low_int
-            if diff < 1000:
-                break
             current = [str(i) for i in str(diff)]
+
+            # Append leading 0s if necessary
+            while len(current) != 4:
+                current.insert(0, '0')
+
+            if len(set(start)) < 2:
+                break
+
             count += 1
-            tabs = count
-            #print('\t' * tabs, f'{high_int}-{low_int}={diff}')
+            # tabs = count
+            # print('\t' * tabs, f'{high_int}-{low_int}={diff}')
 
         if diff != 6174:
             results[num] = 'Unsolvable'
         else:
             results[num] = count
-        #print(f'Total Iterations: {count}')
+        # print(f'Total Iterations: {count}')
 
     with open('Results.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
