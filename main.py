@@ -1,10 +1,23 @@
 import argparse
 import csv
+import random
 
 
 def user():
     start = int(input("Enter a number\n"))
     one(start)
+
+
+def rand():
+    start = []
+
+    # Ensure non-repeating digits
+    while len(set(start)) < 2:
+        start = []
+        for _ in range(4):
+            start.append(str(random.randint(0, 9)))
+
+    one(int("".join(start)))
 
 
 def one(start):
@@ -17,7 +30,6 @@ def one(start):
 
     count = 0
     diff = 0
-    tabs = 0
     current = start  # Retains original start
     print(f'Starting at:\n{int("".join(start))}')
     while diff != 6174:
@@ -37,8 +49,7 @@ def one(start):
             break
 
         count += 1
-        tabs = count
-        print('\t' * tabs, f'{high_int}-{low_int}={diff}')
+        print('\t' * count, f'{high_int} - {low_int} = {diff}')
 
     if diff != 6174:
         print('Unsolvable')
@@ -97,8 +108,10 @@ def main(**kwargs):
         allNumbers()
     elif kwargs.get('num'):
         one(kwargs.get('num'))
-    else:
+    elif kwargs.get('input'):
         user()
+    else:
+        rand()
 
 
 if __name__ == '__main__':
