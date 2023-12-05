@@ -120,6 +120,6 @@ if __name__ == '__main__':
 
     group.add_argument('--all', '-a', action='store_true')
     group.add_argument('--input', '-i', action='store_true')
-    group.add_argument('--num', '-n', type=int, nargs=1)
+    group.add_argument('--num', '-n', type=int)
 
     main(**vars(parser.parse_args()))
