@@ -85,7 +85,7 @@ def allNumbers():
             while len(current) != 4:
                 current.insert(0, '0')
 
-            if len(set(start)) < 2:
+            if len(set(current)) < 2:
                 break
 
             count += 1
